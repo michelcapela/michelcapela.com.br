@@ -51,8 +51,7 @@ header {
 }
 
 /* Avatar + infos juntos */
-header .avatar,
-header .avatar2 {
+header .avatar{
   width: 86px;
   height: 86px;
   border-radius: 22px;
@@ -62,6 +61,17 @@ header .avatar2 {
   display: grid;
   place-items: center;
 }
+header .avatar2 {
+  width: 150px;
+  height: 150px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #111;
+  display: grid;
+  place-items: center;
+}
+
 
 /* Quando a tela for menor que 720px, muda o layout */
 @media (max-width: 720px) {
