@@ -35,66 +35,50 @@
       position: relative;
     }
     /* Fundo dinâmico (gradiente animado + partículas leves) */
-    .animated-bg { position: fixed; inset: 0; z-index: -2; background: radial-gradient(1000px 700px at 80% -10%, rgba(124,92,252,.14), transparent 60%), radial-gradient(900px 700px at -10% 20%, rgba(0,226,168,.10), transparent 60%), linear-gradient(120deg,#0b0b0c 0%, #0f1014 40%, #0b0b0c 100%); background-size: 140% 140%; animation: drift 18s ease-in-out infinite alternate; filter: saturate(1.1); }
+    .animated-bg { position: fixed; inset: 0; z-index: -2; background:
+      radial-gradient(1000px 700px at 80% -10%, rgba(124,92,252,.14), transparent 60%),
+      radial-gradient(900px 700px at -10% 20%, rgba(0,226,168,.10), transparent 60%),
+      linear-gradient(120deg,#0b0b0c 0%, #0f1014 40%, #0b0b0c 100%);
+      background-size: 140% 140%;
+      animation: drift 18s ease-in-out infinite alternate;
+      filter: saturate(1.1);
+    }
     @keyframes drift { to { background-position: 80% 40%; } }
     canvas#stars { position: fixed; inset: 0; z-index: -1; opacity: .35; }
 
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px 72px; }
-   /* Layout padrão (desktop) */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-  gap: 20px;
-}
 
-/* Avatar + infos juntos */
-header .avatar{
-  width: 86px;
-  height: 86px;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: #111;
-  display: grid;
-  place-items: center;
-}
-header .avatar2 {
-  width: 150px;
-  height: 150px;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: #111;
-  display: grid;
-  place-items: center;
-}
+    /* Header (desktop) */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      gap: 20px;
+    }
+    header .avatar{
+      width: 86px; height: 86px; border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--border); background: #111; display: grid; place-items: center;
+    }
+    header .avatar2 {
+      width: 150px; height: 150px; border-radius: 22px; overflow: hidden;
+      border: 1px solid var(--border); background: #111; display: grid; place-items: center;
+    }
 
-
-/* Quando a tela for menor que 720px, muda o layout */
-@media (max-width: 720px) {
-  header {
-    flex-direction: column;   /* Fica em coluna */
-    text-align: center;       /* Centraliza o texto */
-  }
-
-  header .title {
-    margin-top: 10px;
-  }
-
-  header .links {
-    justify-content: center;
-  }
-}
-
+    /* Responsivo header */
+    @media (max-width: 720px) {
+      header { flex-direction: column; text-align: center; }
+      header .title { margin-top: 10px; }
+      header .links { justify-content: center; }
+    }
 
     .avatar { width: 86px; height: 86px; border-radius: 22px; overflow: hidden; border: 1px solid var(--border); background: #111; display: grid; place-items: center; color: var(--muted); box-shadow: var(--shadow); }
     .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     .avatar2 { width: 150px; height: 150px; border-radius: 22px; overflow: hidden; border: 1px solid var(--border); background: #111; display: grid; place-items: center; color: var(--muted); box-shadow: var(--shadow); }
     .avatar2 img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
     .title h1 { margin: 0; font-size: clamp(22px, 4vw, 36px); font-weight: 800; letter-spacing: .2px; }
     .title p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
 
@@ -103,8 +87,19 @@ header .avatar2 {
     .btn:hover { transform: translateY(-1px); border-color: #2b2b36; background: #14141a; }
     .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; color: #0a0a0a; }
 
+    /* Tabs (menu) */
+    .tabs { margin: 24px 0 10px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .tab-btn {
+      padding: 10px 14px; border-radius: 999px; border: 1px solid var(--border);
+      background: #121216; color: var(--text); font-weight: 700; font-size: 14px;
+      box-shadow: var(--shadow); cursor: pointer; transition: transform .08s ease, background .2s ease, border-color .2s ease;
+    }
+    .tab-btn:hover { transform: translateY(-1px); border-color: #2b2b36; background: #14141a; }
+    .tab-btn.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0a0a0a; border: none; }
+
     .notice { margin: 16px 0 4px; padding: 10px 14px; border-radius: 12px; border:1px solid var(--border); background:#121216; color: var(--muted); font-size: 14px; }
 
+    /* Barra de busca/filtros do Setup */
     .bar { display:flex; flex-wrap:wrap; gap:10px; margin: 16px 0 8px; align-items:center; }
     .bar h2 { margin: 0; font-size: 18px; letter-spacing:.2px; }
     .search { flex:1 1 260px; }
@@ -126,6 +121,20 @@ header .avatar2 {
     .pill { padding: 9px 12px; border-radius: 999px; border: 1px solid var(--border); font-weight: 700; font-size: 13px; background:#101014; }
     .pill.buy { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #0a0a0a; border: none; }
 
+    /* Seções */
+    section { display: none; }
+    section.active { display: block; }
+
+    /* Jogos */
+    .games { margin-top: 10px; display: grid; gap: 10px; }
+    .game-item {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 12px 14px; border-radius: 12px; border:1px solid var(--border);
+      background:#121216; box-shadow: var(--shadow);
+    }
+    .game-item h3 { margin:0; font-size:15px; }
+    .badge { font-size: 11px; color: var(--muted); border:1px solid var(--border); padding:4px 8px; border-radius:999px; }
+
     footer { margin-top: 42px; color: var(--muted); font-size: 13px; text-align: center; }
   </style>
 </head>
@@ -133,7 +142,9 @@ header .avatar2 {
   <div class="animated-bg"></div>
   <canvas id="stars"></canvas>
   <div class="wrap">
+    <!-- HEADER (fica igual em todas as abas) -->
     <header>
+      <!-- Perfil -->
       <div class="avatar">
         <img src="src/michel2.jpg" alt="Michel Capela" onerror="this.parentElement.textContent='MC'; this.remove();" />
       </div>
@@ -141,267 +152,236 @@ header .avatar2 {
         <h1>Michel Capela</h1>
         <nav class="links">
           <a class="btn" href="mailto:michelcapela11@gmail.com">E-mail</a>
-          <a class="btn primary" href="https://tiktok.com/@tapoxinhas" target="_blank">TikTok</a>
-          <a class="btn primary" href="https://instagram.com/_weqwewee" target="_blank">Instagram</a>
+          <a class="btn primary" href="https://tiktok.com/@tapoxinhas" target="_blank" rel="noopener">TikTok</a>
+          <a class="btn primary" href="https://instagram.com/_weqwewee" target="_blank" rel="noopener">Instagram</a>
         </nav>
       </div>
 
-       <div class="avatar2">
-        <img src="src/pix.jfif" alt="Pix" onerror="this.parentElement.textContent='MC'; this.remove();" />
-      </div>
+      <!-- Pix / Doações -->
+      <a class="avatar2" href="pix://_" title="Chave Pix" aria-label="Pix/Doações" onclick="return false;">
+        <img src="src/pix.jfif" alt="Pix – Doações" onerror="this.parentElement.textContent='PIX'; this.remove();" />
+      </a>
       <div class="title">
         <h1>Pix/Doações</h1>
-          <p>Contribua com um pix 💚</p>
+        <p>Contribua com um pix 💚</p>
+      </div>
+
+      <!-- Discord (novo) -->
+      <a class="avatar2" href="https://discord.com/invite/SEUINVITE" target="_blank" rel="noopener" title="Entrar no Discord" aria-label="Discord">
+        <img src="src/discord.png" alt="Discord" onerror="this.parentElement.textContent='Discord'; this.remove();" />
+      </a>
+      <div class="title">
+        <h1>Discord</h1>
+        <p>Entre no servidor 💬</p>
       </div>
     </header>
 
-    <!-- AVISO DE AFILIADOS NO TOPO -->
-    <div class="notice">
-      <strong>Meu setup -> Como eu escolho produtos</strong><br/>
-      Só recomendo o que eu uso ou testei. Os links são de afiliado (posso receber comissão sem custo extra pra você). Obrigado por apoiar meu conteúdo.
-    </div>
+    <!-- MENU DE ABAS -->
+    <nav class="tabs" role="tablist" aria-label="Navegação principal">
+      <button class="tab-btn active" data-tab="home" role="tab" aria-selected="true">Home</button>
+      <button class="tab-btn" data-tab="jogos" role="tab" aria-selected="false">Jogos</button>
+      <button class="tab-btn" data-tab="setup" role="tab" aria-selected="false">Setup</button>
+    </nav>
 
-    <!-- Barra de título + busca + filtros -->
-    <div class="bar">
-      <div class="search"><input type="text" id="searchInput" placeholder="🔎 Pesquisar" onkeyup="filterCards()"></div>
-      <div class="filters">
-        <button class="chip active" data-filter="all" onclick="setFilter('all', this)">Tudo</button>
-        <button class="chip" data-filter="periferico" onclick="setFilter('periferico', this)">Periféricos</button>
-        <button class="chip" data-filter="audio" onclick="setFilter('audio', this)">Áudio</button>
-        <button class="chip" data-filter="pc" onclick="setFilter('pc', this)">PC/Componentes</button>
-        <button class="chip" data-filter="jogo" onclick="setFilter('jogo', this)">Games</button>
+    <!-- ABA: HOME (apenas perfil/links/pix/discord) -->
+    <section id="tab-home" class="active" role="tabpanel" aria-labelledby="home">
+      <!-- Você pode adicionar algum texto de boas-vindas aqui se quiser -->
+    </section>
+
+    <!-- ABA: JOGOS -->
+    <section id="tab-jogos" role="tabpanel" aria-labelledby="jogos">
+      <div class="notice">
+        <strong>Lista de jogos</strong><br/>
+        Jogos que tenho instalado / jogo com frequência nas lives.
       </div>
-    </div>
+      <div class="games" id="games-list">
+        <!-- Edite os itens abaixo livremente -->
+        <div class="game-item">
+          <h3>Counter-Strike 2 (CS2)</h3>
+          <span class="badge">FPS</span>
+        </div>
+        <div class="game-item">
+          <h3>Valorant</h3>
+          <span class="badge">FPS</span>
+        </div>
+        <div class="game-item">
+          <h3>GTA V / GTA RP</h3>
+          <span class="badge">Ação / RP</span>
+        </div>
+        <div class="game-item">
+          <h3>Fortnite</h3>
+          <span class="badge">Battle Royale</span>
+        </div>
+        <div class="game-item">
+          <h3>Free Fire</h3>
+          <span class="badge">Mobile / BR</span>
+        </div>
+        <!-- Exemplo: adicione Assassin’s Creed se quiser manter na lista
+        <div class="game-item">
+          <h3>Assassin’s Creed (2007)</h3>
+          <span class="badge">Single-player</span>
+        </div>
+        -->
+      </div>
+    </section>
 
-    <!-- GRID DE PRODUTOS AFILIADOS  -->
-    <section class="grid" id="grid">
-      <!-- DUPLIQUE ESTES CARDS PARA ADICIONAR ITENS -->
-      <article class="card" data-cat="periferico" data-tags="teclado mecanico furycube g87 noah silver switch">
-        <div class="thumb"><img src="src/teclado.webp" alt="Teclado Mecânico 80% Gaming Gasket Hotswap Furycube G87"/></div>
-        <div class="info">
-          <h3>Teclado Mecânico 80% Gaming Gasket Hotswap Furycube G87</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2yQk97u" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+    <!-- ABA: SETUP (aviso + busca/filtros + grid) -->
+    <section id="tab-setup" role="tabpanel" aria-labelledby="setup">
+      <!-- AVISO DE AFILIADOS -->
+      <div class="notice">
+        <strong>Meu setup -> Como eu escolho produtos</strong><br/>
+        Só recomendo o que eu uso ou testei. Os links são de afiliado (posso receber comissão sem custo extra pra você). Obrigado por apoiar meu conteúdo.
+      </div>
 
-      <article class="card" data-cat="periferico" data-tags="Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco">
-        <div class="thumb"><img src="src/mouse.webp" alt="Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco"/></div>
-        <div class="info">
-          <h3>Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco</h3>
+      <!-- Barra de título + busca + filtros -->
+      <div class="bar">
+        <div class="search">
+          <input type="text" id="searchInput" placeholder="🔎 Pesquisar" onkeyup="filterCards()">
         </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1rASYiH" target="_blank" rel="noopener">Comprar</a>
+        <div class="filters">
+          <button class="chip active" data-filter="all" onclick="setFilter('all', this)">Tudo</button>
+          <button class="chip" data-filter="periferico" onclick="setFilter('periferico', this)">Periféricos</button>
+          <button class="chip" data-filter="audio" onclick="setFilter('audio', this)">Áudio</button>
+          <button class="chip" data-filter="pc" onclick="setFilter('pc', this)">PC/Componentes</button>
+          <button class="chip" data-filter="jogo" onclick="setFilter('jogo', this)">Games</button>
         </div>
-      </article>
+      </div>
 
-       <article class="card" data-cat="periferico" data-tags="Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto">
-        <div class="thumb"><img src="src/monitor.webp" alt="Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto"/></div>
-        <div class="info">
-          <h3>Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1iYd3Ao" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+      <!-- GRID DE PRODUTOS AFILIADOS -->
+      <section class="grid" id="grid">
+        <!-- DUPLIQUE ESTES CARDS PARA ADICIONAR ITENS -->
+        <article class="card" data-cat="periferico" data-tags="teclado mecanico furycube g87 noah silver switch">
+          <div class="thumb"><img src="src/teclado.webp" alt="Teclado Mecânico 80% Gaming Gasket Hotswap Furycube G87"/></div>
+          <div class="info"><h3>Teclado Mecânico 80% Gaming Gasket Hotswap Furycube G87</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2yQk97u" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto">
-        <div class="thumb"><img src="src/webcam.webp" alt="Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto"/></div>
-        <div class="info">
-          <h3>Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2jVLTR3" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco">
+          <div class="thumb"><img src="src/mouse.webp" alt="Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco"/></div>
+          <div class="info"><h3>Mouse Sem Fio Redragon King Pro Eisa 1k Anime Paw3395 26000 Dpi Branco</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1rASYiH" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-       <article class="card" data-cat="periferico" data-tags="Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm">
-        <div class="thumb"><img src="src/mousepad.webp" alt="Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm"/></div>
-        <div class="info">
-          <h3>Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1pCDGN3" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto">
+          <div class="thumb"><img src="src/monitor.webp" alt="Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto"/></div>
+          <div class="info"><h3>Monitor Gamer Aoc 21.5'' Full Hd Gaming 120hz 1ms 22b30hm23 Cor Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1iYd3Ao" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
+        <article class="card" data-cat="periferico" data-tags="Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto">
+          <div class="thumb"><img src="src/webcam.webp" alt="Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto"/></div>
+          <div class="info"><h3>Câmera Webcam Logitech C920e Full Hd 30fps Cor Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2jVLTR3" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica">
-        <div class="thumb"><img src="src/projetor.webp" alt="Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica"/></div>
-        <div class="info">
-          <h3>Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2rjQBkp" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm">
+          <div class="thumb"><img src="src/mousepad.webp" alt="Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm"/></div>
+          <div class="info"><h3>Mousepad Gamer Fallen Dota 2 Eco Omnislash Speed++ 35x25cm</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1pCDGN3" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-       <article class="card" data-cat="periferico" data-tags="Interface de áudio PreSonus AudioBox USB preta">
-        <div class="thumb"><img src="src/interface.webp" alt="Interface de áudio PreSonus AudioBox USB preta"/></div>
-        <div class="info">
-          <h3>Interface de áudio PreSonus AudioBox USB preta</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/17Zx2v6" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica">
+          <div class="thumb"><img src="src/projetor.webp" alt="Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica"/></div>
+          <div class="info"><h3>Luminária Projetor Luz Noturna - Decoração Quarto Encantador Estrutura Unica</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2rjQBkp" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto">
-        <div class="thumb"><img src="src/mic.webp" alt="Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto"/></div>
-        <div class="info">
-          <h3>Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2VJAEUo" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Interface de áudio PreSonus AudioBox USB preta">
+          <div class="thumb"><img src="src/interface.webp" alt="Interface de áudio PreSonus AudioBox USB preta"/></div>
+          <div class="info"><h3>Interface de áudio PreSonus AudioBox USB preta</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/17Zx2v6" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto">
-        <div class="thumb"><img src="src/kit_sem_monitor.webp" alt="Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto"/></div>
-        <div class="info">
-          <h3>Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2mqEdMt" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto">
+          <div class="thumb"><img src="src/mic.webp" alt="Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto"/></div>
+          <div class="info"><h3>Microfone Consensador Presonus M7 Para Podcasts E Gravações Cor Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2VJAEUo" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
+        <article class="card" data-cat="periferico" data-tags="Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto">
+          <div class="thumb"><img src="src/kit_sem_monitor.webp" alt="Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto"/></div>
+          <div class="info"><h3>Pacote de interface Presonus Audiobox Usb 96 Studio Voz/Instrumento Cor Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2mqEdMt" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto">
-        <div class="thumb"><img src="src/kit_completo.webp" alt="Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto"/></div>
-        <div class="info">
-          <h3>Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1U1fHBp" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto">
+          <div class="thumb"><img src="src/kit_completo.webp" alt="Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto"/></div>
+          <div class="info"><h3>Kit Presonus Studio C/ Interface Monitor Fone Microfone Cor Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1U1fHBp" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
         <article class="card" data-cat="periferico" data-tags="Carbon Braço Articulado Aço Suporte de Mesa para Microfone Preto">
-        <div class="thumb"><img src="src/braco.webp" alt="Carbon Braço Articulado Aço Suporte de Mesa para Microfone Preto"/></div>
-        <div class="info">
-          <h3>Carbon Braço Articulado Aço Suporte de Mesa para Microfone Preto</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/18QyX9i" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+          <div class="thumb"><img src="src/braco.webp" alt="Carbon Braço Articulado Aço Suporte de Mesa para Microfone Preto"/></div>
+          <div class="info"><h3>Carbon Braço Articulado Aço Suporte de Mesa para Microfone Preto</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/18QyX9i" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
+        <article class="card" data-cat="jogo" data-tags="Party Game Sintonia Wavelength Galápagos">
+          <div class="thumb"><img src="src/sintonia.webp" alt="Party Game Sintonia Wavelength Galápago"/></div>
+          <div class="info"><h3>Party Game Sintonia Wavelength Galápago</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1SbToqZ" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="jogo" data-tags="Party Game Sintonia Wavelength Galápagos">
-        <div class="thumb"><img src="src/sintonia.webp" alt="Party Game Sintonia Wavelength Galápagos"/></div>
-        <div class="info">
-          <h3>Party Game Sintonia Wavelength Galápago</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1SbToqZ" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="jogo" data-tags="Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo">
+          <div class="thumb"><img src="src/r36s.webp" alt="Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo"/></div>
+          <div class="info"><h3>Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2c1zQ3c" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="jogo" data-tags="Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo">
-        <div class="thumb"><img src="src/r36s.webp" alt="Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo"/></div>
-        <div class="info">
-          <h3>Game R36s Portátil Retro 15mil Jogos 64gb Roxo Novo</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2c1zQ3c" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple">
+          <div class="thumb"><img src="src/fone.webp" alt="Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple"/></div>
+          <div class="info"><h3>Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/21wS6MR" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple">
-        <div class="thumb"><img src="src/fone.webp" alt="Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple"/></div>
-        <div class="info">
-          <h3>Fone de ouvido in-ear KZ Audio ZSN Pro Standard purple</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/21wS6MR" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="audio" data-tags="Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco">
+          <div class="thumb"><img src="src/afinador.webp" alt="Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco"/></div>
+          <div class="info"><h3>Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1VnRWRT" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="audio" data-tags="Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco">
-        <div class="thumb"><img src="src/afinador.webp" alt="Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco"/></div>
-        <div class="info">
-          <h3>Afinador Digital Cromático Clip Violão Viola Guitarra Cavaco</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1VnRWRT" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="audio" data-tags="Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco">
+          <div class="thumb"><img src="src/violao.webp" alt="Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco"/></div>
+          <div class="info"><h3>Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/2JxVWB3" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
+        <article class="card" data-cat="pc" data-tags="Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060">
+          <div class="thumb"><img src="src/pc.webp" alt="Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060"/></div>
+          <div class="info"><h3>Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/232U5a9" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="audio" data-tags="Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco">
-        <div class="thumb"><img src="src/violao.webp" alt="Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco"/></div>
-        <div class="info">
-          <h3>Violão Elétrico Phx Ah-106 Ns-40 J.white Aço Natural Fosco</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/2JxVWB3" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="audio" data-tags="Capotraste Ernie Ball Axis Prata para 6 cordas">
+          <div class="thumb"><img src="src/capo.webp" alt="Capotraste Ernie Ball Axis Prata para 6 cordas"/></div>
+          <div class="info"><h3>Capotraste Ernie Ball Axis Prata para 6 cordas</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1B97rzU" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="pc" data-tags="Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060">
-        <div class="thumb"><img src="src/pc.webp" alt="Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060"/></div>
-        <div class="info">
-          <h3>Pc Gamer Ryzen 5 5500 Rtx 4060 32gb Ram Ssd 1tb 1 Tb 32 Gb Rtx 4060</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/232U5a9" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="audio" data-tags="Capotraste Tubarao Prata 6 cordas">
+          <div class="thumb"><img src="src/capo_tuba.webp" alt="Capotraste Tubarao Prata 6 cordas"/></div>
+          <div class="info"><h3>Capotraste Tubarao Prata 6 cordas</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1Bb9jzs" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="audio" data-tags="Capotraste Ernie Ball Axis Prata para 6 cordas">
-        <div class="thumb"><img src="src/capo.webp" alt="Capotraste Ernie Ball Axis Prata para 6 cordas"/></div>
-        <div class="info">
-          <h3>Capotraste Ernie Ball Axis Prata para 6 cordas</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1B97rzU" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you">
+          <div class="thumb"><img src="src/ring.webp" alt="Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you"/></div>
+          <div class="info"><h3>Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1wmaPkN" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="audio" data-tags="Capotraste Tubarao Prata 6 cordas">
-        <div class="thumb"><img src="src/capo_tuba.webp" alt="Capotraste Tubarao Prata 6 cordas"/></div>
-        <div class="info">
-          <h3>Capotraste Tubarao Prata 6 cordas</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1Bb9jzs" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
+        <article class="card" data-cat="periferico" data-tags="Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho">
+          <div class="thumb"><img src="src/tripe.webp" alt="Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho"/></div>
+          <div class="info"><h3>Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/1Cn3Coi" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
 
-      <article class="card" data-cat="periferico" data-tags="Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you">
-        <div class="thumb"><img src="src/ring.webp" alt="Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you"/></div>
-        <div class="info">
-          <h3>Ring Light Iluminador Led Profissional 26cm Tripé 2,10m Estrutura Preto Luz Branco-frio 4you</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1wmaPkN" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
-
-      <article class="card" data-cat="periferico" data-tags="Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho">
-        <div class="thumb"><img src="src/tripe.webp" alt="Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho"/></div>
-        <div class="info">
-          <h3>Kit 2 Tripé P/ Celular Portátil Mini Suporte Flexível Apoio Preto/azul/vermelho</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/1Cn3Coi" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
-
-
-      <article class="card" data-cat="periferico" data-tags="Filtro De Linha Universal 5 Tomadas / Régua / Extensão">
-        <div class="thumb"><img src="src/filtro.webp alt="Filtro De Linha Universal 5 Tomadas / Régua / Extensão"/></div>
-        <div class="info">
-          <h3>Filtro De Linha Universal 5 Tomadas / Régua / Extensão</h3>
-        </div>
-        <div class="cta">
-          <a class="pill buy" href="https://mercadolivre.com/sec/125swE9" target="_blank" rel="noopener">Comprar</a>
-        </div>
-      </article>
-
-     
+        <article class="card" data-cat="periferico" data-tags="Filtro De Linha Universal 5 Tomadas / Régua / Extensão">
+          <div class="thumb"><img src="src/filtro.webp" alt="Filtro De Linha Universal 5 Tomadas / Régua / Extensão"/></div>
+          <div class="info"><h3>Filtro De Linha Universal 5 Tomadas / Régua / Extensão</h3></div>
+          <div class="cta"><a class="pill buy" href="https://mercadolivre.com/sec/125swE9" target="_blank" rel="noopener">Comprar</a></div>
+        </article>
+      </section>
     </section>
 
     <footer>
@@ -417,16 +397,57 @@ header .avatar2 {
     const cvs = document.getElementById('stars');
     const ctx = cvs.getContext('2d');
     let W, H, stars;
-    function resize(){ W = cvs.width = innerWidth; H = cvs.height = innerHeight; stars = Array.from({length: Math.min(120, Math.floor(W*H/18000))},()=>({x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.6+0.2, s:Math.random()*0.6+0.2})) }
+    function resize(){ 
+      W = cvs.width = innerWidth; 
+      H = cvs.height = innerHeight; 
+      stars = Array.from({length: Math.min(120, Math.floor(W*H/18000))},()=>({
+        x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.6+0.2, s:Math.random()*0.6+0.2
+      }));
+    }
     addEventListener('resize', resize); resize();
-    (function loop(){ ctx.clearRect(0,0,W,H); ctx.fillStyle='rgba(255,255,255,.7)'; for(const p of stars){ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); p.y+=p.s; if(p.y>H){ p.y=-2; p.x=Math.random()*W; } } requestAnimationFrame(loop); })();
+    (function loop(){
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle='rgba(255,255,255,.7)';
+      for(const p of stars){
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+        p.y+=p.s; if(p.y>H){ p.y=-2; p.x=Math.random()*W; }
+      }
+      requestAnimationFrame(loop);
+    })();
 
-    // Filtro por texto + categoria
+    // Navegação por abas
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabSections = {
+      home: document.getElementById('tab-home'),
+      jogos: document.getElementById('tab-jogos'),
+      setup: document.getElementById('tab-setup'),
+    };
+    function setTab(tab){
+      Object.values(tabSections).forEach(sec => sec.classList.remove('active'));
+      tabSections[tab].classList.add('active');
+      tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+      // Foco de acessibilidade
+      const activeBtn = Array.from(tabButtons).find(b => b.dataset.tab === tab);
+      tabButtons.forEach(b => b.setAttribute('aria-selected', b === activeBtn ? 'true' : 'false'));
+    }
+    tabButtons.forEach(btn => btn.addEventListener('click', () => setTab(btn.dataset.tab)));
+    // Abre Home por padrão
+    setTab('home');
+
+    // Filtro por texto + categoria (apenas na aba Setup)
     let currentFilter = 'all';
-    function setFilter(cat, el){ currentFilter = cat; document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active')); el.classList.add('active'); filterCards(); }
+    function setFilter(cat, el){
+      currentFilter = cat;
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      el.classList.add('active');
+      filterCards();
+    }
     function filterCards(){
-      const q = document.getElementById('searchInput').value.toLowerCase();
-      const cards = document.querySelectorAll('#grid .card');
+      const qEl = document.getElementById('searchInput');
+      const q = (qEl ? qEl.value.toLowerCase() : '');
+      const grid = document.getElementById('grid');
+      if(!grid) return;
+      const cards = grid.querySelectorAll('.card');
       cards.forEach(card=>{
         const text = card.innerText.toLowerCase();
         const cat = card.getAttribute('data-cat');
