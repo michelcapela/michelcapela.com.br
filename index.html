@@ -50,21 +50,39 @@
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px 72px; }
 
     /* Header (desktop) */
-    header {
+    /* header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: nowrap;
-      gap: 10px;
+      gap: 20px;
     }
     header .avatar{
       width: 86px; height: 86px; border-radius: 22px; overflow: hidden;
       border: 1px solid var(--border); background: #111; display: grid; place-items: center;
     }
-    /*header .avatar2 {
+    header .avatar2 {
       width: 200px; height: 200px; border-radius: 22px; overflow: hidden;
       border: 1px solid var(--border); background: #111; display: grid; place-items: center;
-    }*/
+    } */
+     header { 
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;            /* <— permite quebrar linha ao invés de espremê-los */
+}
+
+.avatar, .avatar2 {
+  flex-shrink: 0;             /* <— impede “afinar” */
+  aspect-ratio: 1 / 1;        /* <— garante ser quadrado */
+  height: auto;               /* <— deixa a altura seguir a largura */
+}
+
+.avatar  { width: 86px;  }
+.avatar2 { width: 200px; min-width: 200px; } /* trava a largura mínima */
+.avatar img,
+.avatar2 img { object-fit: cover; }
+
 
     /* Responsivo header */
     @media (max-width: 720px) {
