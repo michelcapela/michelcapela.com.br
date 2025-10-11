@@ -52,22 +52,30 @@
  /* Header (desktop) */
 header {
   display: flex;
-  flex-direction: column;     /* coloca um embaixo do outro */
-  align-items: center;        /* centraliza horizontalmente */
-  justify-content: center;    /* centraliza verticalmente */
-  gap: 10px;                  /* espaço entre avatar e título */
-  text-align: center;         /* centraliza o texto */
+  align-items: center;        /* alinha verticalmente */
+  justify-content: center;    /* centraliza horizontalmente */
+  gap: 20px;                  /* espaço entre avatar e título */
+  flex-wrap: nowrap;          /* evita quebrar linha */
+  text-align: left;           /* texto alinhado ao lado */
 }
 
 header .avatar2 {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid var(--border);
   background: #111;
   display: grid;
   place-items: center;
+  box-shadow: var(--shadow);
+}
+
+header .avatar2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 
