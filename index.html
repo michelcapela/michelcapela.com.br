@@ -49,18 +49,26 @@
     a { color: inherit; text-decoration: none; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 28px 20px 72px; }
 
-    /* Header (desktop) */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    header .avatar2 {
-      width: 200px; height: 200px; border-radius: 22px; overflow: hidden;
-      border: 1px solid var(--border); background: #111; display: grid; place-items: center;
-    }
+ /* Header (desktop) */
+header {
+  display: flex;
+  flex-direction: column;     /* coloca um embaixo do outro */
+  align-items: center;        /* centraliza horizontalmente */
+  justify-content: center;    /* centraliza verticalmente */
+  gap: 10px;                  /* espaço entre avatar e título */
+  text-align: center;         /* centraliza o texto */
+}
+
+header .avatar2 {
+  width: 200px;
+  height: 200px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #111;
+  display: grid;
+  place-items: center;
+}
 
 
 
