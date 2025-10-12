@@ -242,6 +242,20 @@ header .avatar2 img {
   transition: transform .6s cubic-bezier(.2,.8,.2,1);
 }
 
+.livepix-link {
+  color: var(--accent-2);           /* usa o verde ou ciano do tema */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+
+.livepix-link:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(0, 226, 168, 0.4);
+}
+
+
 /* “cantoneiras” futuristas (detalhe opcional) */
 .tech-frame .corners::before,
 .tech-frame .corners::after {
@@ -309,8 +323,13 @@ header .avatar2 img {
 <div class="title">
   <h3>Pix/Doações</h3>
   <p>Contribua com um pix 💚</p>
-  <small>Mande sua mensagem na live</small>
+  <small>
+    <a href="https://livepix.gg/tapoxinha" target="_blank" rel="noopener" class="livepix-link">
+      💬 Mande sua mensagem na live
+    </a>
+  </small>
 </div>
+
 
       <!-- Discord (novo) -->
       <a class="avatar2" href="https://discord.gg/wmCc4gkpvW" target="_blank" rel="noopener" title="Entrar no Discord" aria-label="Discord">
