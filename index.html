@@ -336,7 +336,7 @@ header .avatar2 img {
     </nav>
 
 <!-- ABA: HOME (apenas perfil/links/pix/discord) -->
-<section id="tab-home" class="active" role="tabpanel" aria-labelledby="home">
+<section id="tab-home" class="active" role="tabpanel">
   <div class="notice">
 
     <a class="avatar2"
@@ -580,11 +580,24 @@ header .avatar2 img {
     // Navegação por abas
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabSections = {
-      home: document.getElementById('tab-home'),
-      livepix: document.getElementById('tab-livepix'),
-      jogos: document.getElementById('tab-jogos'),
-      setup: document.getElementById('tab-setup'),
-    };
+  home: document.getElementById('tab-home'),
+  setup: document.getElementById('tab-setup'),
+};
+
+function setTab(tab){
+  Object.values(tabSections).forEach(sec => {
+    if (sec) sec.classList.remove('active');
+  });
+
+  if (tabSections[tab]) tabSections[tab].classList.add('active');
+
+  tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+
+  const activeBtn = Array.from(tabButtons).find(b => b.dataset.tab === tab);
+  tabButtons.forEach(b => b.setAttribute('aria-selected', b === activeBtn ? 'true' : 'false'));
+}
+
+
     function setTab(tab){
       Object.values(tabSections).forEach(sec => sec.classList.remove('active'));
       tabSections[tab].classList.add('active');
